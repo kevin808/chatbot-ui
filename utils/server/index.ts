@@ -41,7 +41,7 @@ export const OpenAIStream = async (
         Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`
       }),
       ...(OPENAI_API_TYPE === 'azure' && {
-        'api-key': `${key ? key : process.env.OPENAI_API_KEY}`
+        'api-key': `${key ? key : process.env.AZURE_OPENAI_API_KEY}`
       }),
       ...((OPENAI_API_TYPE === 'openai' && OPENAI_ORGANIZATION) && {
         'OpenAI-Organization': OPENAI_ORGANIZATION,
@@ -57,7 +57,7 @@ export const OpenAIStream = async (
         },
         ...messages,
       ],
-      max_tokens: 1000,
+      max_tokens: 5000,
       temperature: temperature,
       stream: true,
     }),
